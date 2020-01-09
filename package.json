@@ -1,0 +1,23 @@
+{
+  "name": "node-pofile",
+  "version": "1.0.0",
+  "description": "a dynamically generated profile using node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EdwardEMC/nodeprofilegenerator.git"
+  },
+  "author": "edward coad",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EdwardEMC/nodeprofilegenerator/issues"
+  },
+  "homepage": "https://github.com/EdwardEMC/nodeprofilegenerator#readme",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "inquirer": "^7.0.3"
+  }
+}
