@@ -69,6 +69,12 @@ async function generateIt() {
         </body>
         </html>`;
 
+        await fs.writeFile(input.username + ".html", profile, function(err) {
+            if(err) {
+                throw err;
+            }
+            console.log("Success!");
+        });
     }
 
     catch(err) {
