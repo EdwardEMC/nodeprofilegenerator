@@ -1,6 +1,11 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const axios = require("axios");
+const pdf = require("html-pdf");
+const options = { format: "Letter"};
+const util = require("util");
+
+const readFileAsync = util.promisify(fs.readFile);
 
 async function generateIt() {
     try {
@@ -15,6 +20,10 @@ async function generateIt() {
                     name: "username"
                 }
             ]);
+
+        if(input.color==="") {
+            input.color = "blue";
+        }
 
         const queryURL = `https://api.github.com/users/${input.username}`;
         ///repos?per_page=100
@@ -38,6 +47,10 @@ async function generateIt() {
                 <title>${data.name}'s Portfolio</title>
             
                 <style>
+                    html, body {
+                        height: 100%;
+                    }
+
                     .header {
                         background-color: #f0ce41;
                         height: 30px;
@@ -119,7 +132,7 @@ async function generateIt() {
                         <h1 class="center" style="color:wheat;">My name is: ${data.name}</h1>
                         <br>
                         <div class="center">
-                            <i class="fas fa-map-marker-alt"></i><a class="links" href="https://www.google.com.au/maps/place/${data.location}" alt="location"></a> ${data.location}, </a>
+                            <i class="fas fa-map-marker-alt"></i><a class="links" href="https://www.google.com.au/maps/place/${data.location}" alt="location"> ${data.location}, </a>
                             <i class="fab fa-github"></i><a class="links" href=${data.html_url} alt="github account"> GitHub, </a>
                             <i class="fab fa-blogger-b"></i><a class="links" href=${data.blog} alt="other social media"> Blog</a>
                         </div>
@@ -153,12 +166,28 @@ async function generateIt() {
             </body>
             </html>`;
 
+        
+
         await fs.writeFile(input.username + ".html", profile, function(err) {
             if(err) {
                 throw err;
             }
             console.log("Success!");
         });
+
+        const html = await readFileAsync(input.username + ".html", function(err, data){
+            if(err) {
+                throw err;
+            }
+            return data;
+            
+        });
+        
+        await pdf.create(html.toString(), options).toFile('./' + input.username + '.pdf', function(err, res) {
+        if (err) {
+          console.log(err);
+        }
+    });
     }
 
     catch(err) {
