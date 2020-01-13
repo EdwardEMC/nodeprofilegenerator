@@ -1,4 +1,8 @@
 # nodeprofilegenerator
+Working application:
+
+![Gif](/images/application.gif?raw=true "Gif") 
+
 A node application to dynamically generate a profile from a given GitHub repository. The user is asked to enter their favourite color and the username of their GitHub profile. 
 
 ![Input](/images/inputSS.jpg?raw=true "Input") 
