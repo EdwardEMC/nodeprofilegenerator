@@ -1,7 +1,7 @@
 # nodeprofilegenerator
 A node application to dynamically generate a profile from a given GitHub repository. The user is asked to enter their favourite color and the username of their GitHub profile. 
 
-![Input](/images/input.jpg?raw=true "Input") 
+![Input](/images/inputSS.jpg?raw=true "Input") 
 
 The color input is used for the background of the profiles's information cards.
 
